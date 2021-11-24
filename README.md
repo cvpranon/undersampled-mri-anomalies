@@ -11,9 +11,9 @@ Requirements for running this repository are under ``requirements.txt``.
 In this project, we use open sourced fastMRI dataset, which is available [here](https://github.com/facebookresearch/fastMRI).
 FLAIR images of the brain portion is used and the binary annotations used in the paper (healthy vs unhealthy) are provided in ``annotations.npy``. 0 is healthy and 1 is unhealthy.
 
-This repository uses many methods from the fastMRI library, but the accommodate the annotations, there have been some changes made in the DataModule (as well as UNet architecture). The fastmri package used is copied as a subfolder under fastmri.
+This repository uses many methods from the fastMRI library, but the accommodate the annotations, there have been some changes made in the DataModule (as well as UNet architecture). The fastmri package used is copied as a subfolder under ``fastmri``.
 
-Furthermore, for the model trained with ground truth coil sensitivity estimates, one need to obtain coil sensitivities, we did this by using JSENSE reconstruction on fully sampled data provided.
+Furthermore, for the model trained with ground truth coil sensitivity estimates, one needs to obtain coil sensitivities, we did this by using JSENSE reconstruction on fully sampled data provided.
 
 
 ## Define paths
