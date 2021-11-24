@@ -8,13 +8,6 @@ from fastmri.data.subsample import create_mask_for_mask_type
 from fastmri.data.transforms import VarNetDataTransform
 from fastmri.pl_modules import FastMriDataModule
 from module import DenseNetGT
-from pytorch_lightning.accelerators import GPUAccelerator
-from pytorch_lightning.plugins import (
-    NativeMixedPrecisionPlugin,
-    DDP2Plugin,
-    DataParallelPlugin,
-    SingleDevicePlugin,
-)
 from pytorch_lightning.loggers import WandbLogger
 import torch
 import numpy as np
