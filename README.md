@@ -9,7 +9,7 @@ Requirements for running this repository are under ``requirements.txt``.
 ## Dataset and annotations
 
 In this project, we use open sourced fastMRI dataset, which is available [here](https://github.com/facebookresearch/fastMRI).
-FLAIR images of the brain portion is used and the binary annotations used in the paper (healthy vs unhealthy) are provided in ``annotations.npy``. 0 is healthy and 1 is unhealthy.
+FLAIR images of the brain portion is used and the binary annotations used in the paper (healthy vs unhealthy) are provided in ``annotations.npy``. 0 is healthy and 1 is unhealthy. The keys are given as ``filename_sliceno.png``.
 
 This repository uses many methods from the fastMRI library, but the accommodate the annotations, there have been some changes made in the DataModule (as well as UNet architecture). The fastmri package used is copied as a subfolder under ``fastmri``.
 
