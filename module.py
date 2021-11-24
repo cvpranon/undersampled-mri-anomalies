@@ -360,8 +360,6 @@ class ResNetGT(LightningModule):
         lr_step_size: int = 40,
         lr_gamma: float = 0.1,
         weight_decay: float = 0.0,
-        sens_pools: int = 4,
-        sens_chans: int = 4,
         make_transforms=False,
     ):
 
@@ -373,8 +371,6 @@ class ResNetGT(LightningModule):
         self.lr_step_size = lr_step_size
         self.lr_gamma = lr_gamma
         self.weight_decay = weight_decay
-        self.sens_pools = sens_pools
-        self.sens_chans = sens_chans
 
 
         self.classifier = resnet101(
@@ -781,22 +777,6 @@ class ResNetGT(LightningModule):
         Define parameters that only apply to this model
         """
         parser = ArgumentParser(parents=[parent_parser], add_help=False)
-
-        # param overwrites
-
-        parser.add_argument(
-            "--sens_pools",
-            default=4,
-            type=int,
-            help="Number of pooling layers for sense map estimation U-Net in VarNet",
-        )
-        parser.add_argument(
-            "--sens_chans",
-            default=8,
-            type=float,
-            help="Number of channels for sense map estimation U-Net in VarNet",
-        )
-
         # training params (opt)
         parser.add_argument(
             "--lr", default=0.0003, type=float, help="Adam learning rate"
@@ -833,8 +813,6 @@ class DenseNetGT(LightningModule):
         lr_step_size: int = 40,
         lr_gamma: float = 0.1,
         weight_decay: float = 0.0,
-        sens_pools: int = 4,
-        sens_chans: int = 4,
         make_transforms=False,
     ):
 
@@ -846,8 +824,6 @@ class DenseNetGT(LightningModule):
         self.lr_step_size = lr_step_size
         self.lr_gamma = lr_gamma
         self.weight_decay = weight_decay
-        self.sens_pools = sens_pools
-        self.sens_chans = sens_chans
 
 
         self.classifier = densenet121(
@@ -1255,23 +1231,6 @@ class DenseNetGT(LightningModule):
         Define parameters that only apply to this model
         """
         parser = ArgumentParser(parents=[parent_parser], add_help=False)
-
-        # param overwrites
-
-        parser.add_argument(
-            "--sens_pools",
-            default=4,
-            type=int,
-            help="Number of pooling layers for sense map estimation U-Net in VarNet",
-        )
-        parser.add_argument(
-            "--sens_chans",
-            default=8,
-            type=float,
-            help="Number of channels for sense map estimation U-Net in VarNet",
-        )
-
-        # training params (opt)
         parser.add_argument(
             "--lr", default=0.0003, type=float, help="Adam learning rate"
         )
@@ -1333,12 +1292,6 @@ class DenseNetPredictSens(LightningModule):
             number_of_coil_features=1,
             drop_rate=self.drop_prob,
         )
-
-        # define metrics
-        self.accuracy = Accuracy()
-        self.f1_score = F1(average="none", num_classes=2)
-        self.precisionmetric = Precision(average="none", num_classes=2)
-        self.recall = Recall(average="none", num_classes=2)
 
         self.train_preds= list()
         self.train_labels= list()
